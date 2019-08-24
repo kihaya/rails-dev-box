@@ -14,6 +14,10 @@ mkswap /swapfile
 swapon /swapfile
 echo '/swapfile none swap defaults 0 0' >> /etc/fstab
 
+echo "deb http://debian-mirror.sakura.ne.jp/debian jessie main contrib non-free" > /etc/apt/sources.list
+echo "deb http://security.debian.org/ jessie/updates main contrib non-free" >> /etc/apt/sources.list
+echo deb http://ftp.jp.debian.org/debian/ jessie-backports main >> /etc/apt/sources.list
+
 # Prevents "Warning: apt-key output should not be parsed (stdout is not a terminal)".
 export APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo -E apt-key add -
