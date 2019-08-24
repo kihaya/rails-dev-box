@@ -22,7 +22,7 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 echo updating package information
 apt-get -y update >/dev/null 2>&1
 
-install Ruby ruby-full
+sudo snap install ruby --channel=2.5/stable --classic
 install 'development tools' build-essential autoconf libtool
 
 # echo installing current RubyGems
@@ -31,8 +31,7 @@ gem update --system -N >/dev/null 2>&1
 echo installing Bundler
 gem install bundler -N >/dev/null 2>&1
 
-install Git git
-install SQLite sqlite3 libsqlite3-dev
+sudo snap install git-ubuntu --classic
 
 debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
@@ -49,12 +48,12 @@ SQL
 
 install 'Nokogiri dependencies' libxml2 libxml2-dev libxslt1-dev
 install 'Blade dependencies' libncurses5-dev
-install 'ExecJS runtime' nodejs
+sudo snap install node --channel=10/stable --classic
 install 'Yarn' yarn
 
 install 'ImageMagick' imagemagick
 
-install 'FFmpeg' ffmpeg
+sudo snap install ffmpeg
 
 # Needed for docs generation.
 update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
