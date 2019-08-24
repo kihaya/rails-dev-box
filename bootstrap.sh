@@ -14,10 +14,6 @@ mkswap /swapfile
 swapon /swapfile
 echo '/swapfile none swap defaults 0 0' >> /etc/fstab
 
-echo "deb http://debian-mirror.sakura.ne.jp/debian jessie main contrib non-free" > /etc/apt/sources.list
-echo "deb http://security.debian.org/ jessie/updates main contrib non-free" >> /etc/apt/sources.list
-echo deb http://ftp.jp.debian.org/debian/ jessie-backports main >> /etc/apt/sources.list
-
 # Prevents "Warning: apt-key output should not be parsed (stdout is not a terminal)".
 export APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo -E apt-key add -
@@ -26,8 +22,9 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 echo updating package information
 apt-get -y update >/dev/null 2>&1
 
-sudo snap install ruby --channel=2.5/stable --classic
 install 'development tools' build-essential autoconf libtool
+sudo snap install ruby --channel=2.5/stable --classic
+DEBIAN_FRONTEND=noninteractive install "ruby2.5-dev" ruby2.5-dev
 
 # echo installing current RubyGems
 gem update --system -N >/dev/null 2>&1
